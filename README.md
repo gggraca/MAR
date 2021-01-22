@@ -6,7 +6,7 @@ Some examples of application of these methods can be seen in the published paper
 
 <h3> Description </h3>
 
-Main functionalities include data import (Bruker and nmrML formats supported), preprocessing (trimming, normalisation and scaling) and peak integration. Scripts for preprocessing, multivariate analysis and visualisation are also included in the repository.
+Main functionalities include data import (Bruker and [nmrML](http://nmrml.org/) formats supported), preprocessing (trimming, normalisation and scaling) and peak integration. Scripts for preprocessing, multivariate analysis and visualisation are also included in the repository.
 
 
 <h3> References </h3>
