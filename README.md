@@ -1,6 +1,4 @@
-# MAR
-
-**Metabolomics And nmR (MAR) toolbox**
+# Metabolomics And nmR (MAR) toolbox
 
 A collection of functions and scripts to read, process and analyse proton 1D NMR spectra.
 
