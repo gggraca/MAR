@@ -4,7 +4,7 @@ The following text demosntrate how to perform numeric integration of defined NMR
 It requires the functions contained in the file [integration_functions.R](https://github.com/gggraca/MAR/integration_functions.R) and also a function from the R package *ptw*.
 
 As example data set this tutorial makes use of the publically available dataset from Salek *et al.* 2007 
-["A metabolomic study of urinary changes in type 2 diabetes in human compared to the control group"] (https://www.ebi.ac.uk/metabolights/MTBLS1/),
+["A metabolomic study of urinary changes in type 2 diabetes in human compared to the control group"](https://www.ebi.ac.uk/metabolights/MTBLS1/),
 available in the [MetaboLights](https://www.ebi.ac.uk/metabolights/) repository. 
 
 The dataset is composed of 132 <sup>1</sup>H-NMR spectra from human urine of healthy and diabetic subjects.
