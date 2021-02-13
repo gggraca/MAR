@@ -15,8 +15,13 @@ Firstly, install the ptw package and load the [integration_functions.R](https://
 install.packages("ptw")
 source("integration_functions.R")
 ```
-
 Next load the data table containing the preprocessed spectra:
 ```
 spec <- read.csv("MTBLS1_aligned_normalised.csv", header = TRUE)
 ```
+Stacked spectra can be plotted to check the data was correctly loaded using the toolbox function plotNMR:
+```
+plotNMR(spec)
+```
+*insert image*
+Now it is necessary to create a table that contains the metabolite regions to be integrated. The table should have the followin format:
