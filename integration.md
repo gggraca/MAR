@@ -57,4 +57,6 @@ multiIntegration(spec, reg, plots = TRUE, baseline = TRUE, grp, grp_names, save.
 The function will calculate the integrals, create an "integrals" object containing the integration results and will also save the results as a .csv table in the working directory.
 
 The generated plots for the example are shown below:
-![Creatine](/images/Creatine_3.04_3.046_ppm.jpg)
+![Creatine]()
+![Creatinine]()
+![Glucose]()
