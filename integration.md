@@ -18,5 +18,5 @@ source("integration_functions.R")
 
 Next load the data table containing the preprocessed spectra:
 ```
-spec <- read.csv("MTBLS1_aligned_normalised.csv", header = FALSE)
+spec <- read.csv("MTBLS1_aligned_normalised.csv", header = TRUE)
 ```
