@@ -23,7 +23,7 @@ Stacked spectra can be plotted to check the data was correctly loaded using the 
 ```
 plotNMR(spec, 10, 0)
 ```
-![Stacked Spectra](https://github.com/gggraca/MAR/images/stacked_urine.png)
+![Stacked Spectra](/images/stacked_urine.png)
 
 Now it is necessary to create a table that contains the metabolite regions to be integrated. The table should have the followin format:
 Metabolite | ppm.start | ppm.end
@@ -44,7 +44,7 @@ It is then possible to run the integration on the 3 peaks defined in "reg" acros
 The function "multiIntegration" from the toolbox will integrate the peaks, with or without baseline correction, and optionally it can save the plots of stacked spectral peaks and boxplots coloured by group. 
 The following example will use these two options for plotting, hence it will be necessary to define the group variable which contains the colours. In this particular case, the dataset is composed of 48 diabetic subjects and 84 healthy controls. Then the group variable "grp" is defined as: 
 ```
-grp <- c(rep("red", 48), rep("blue", 84))
+grp <- c(rep("blue", 48), rep("red", 84))
 ```
 A variable "grp_names" must also be defined to include the group names:
 ```
