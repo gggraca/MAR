@@ -21,7 +21,7 @@ spec <- read.csv("MTBLS1_aligned_normalised.csv", header = TRUE)
 ```
 Stacked spectra can be plotted to check the data was correctly loaded using the toolbox function plotNMR:
 ```
-plotNMR(spec)
+plotNMR(spec, 10, 0)
 ```
 ![Stacked Spectra](https://github.com/gggraca/MAR/images/stacked_urine.png)
 
@@ -40,3 +40,20 @@ reg <- data.frame(metabolite = c("Creatine", "Creatinine", "Glucose"),
     ppm.start = c(3.046,4.068, 5.26), 
     ppm.end = c(3.040,4.054, 5.23)) 
 ```
+It is then possible to run the integration on the 3 peaks defined in "reg" across the 132 samples from the dataset.
+The function "multiIntegration" from the toolbox will integrate the peaks, with or without baseline correction, and optionally it can save the plots of stacked spectral peaks and boxplots coloured by group. 
+The following example will use these two options for plotting, hence it will be necessary to define the group variable which contains the colours. In this particular case, the dataset is composed of 48 diabetic subjects and 84 healthy controls. Then the group variable "grp" is defined as: 
+```
+grp <- c(rep("red", 48), rep("blue", 84))
+```
+A variable "grp_names" must also be defined to include the group names:
+```
+grp_names <- c("Diabetic", "Healthy Controls")
+```
+Then run the integration function:
+```
+multiIntegration(spec, reg, plots = TRUE, baseline = TRUE, grp, grp_names, save.results = TRUE)
+```
+The function will calculate the integrals, create an "integrals" object containing the integration results and will also save the results as a .csv table in the working directory.
+
+The generated plots for the example are shown below:
