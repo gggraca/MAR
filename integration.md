@@ -23,5 +23,20 @@ Stacked spectra can be plotted to check the data was correctly loaded using the 
 ```
 plotNMR(spec)
 ```
-*insert image*
+![Stacked Spectra](https://github.com/gggraca/MAR/images/stacked_urine.png)
+
 Now it is necessary to create a table that contains the metabolite regions to be integrated. The table should have the followin format:
+Metabolite | ppm.start | ppm.end
+---------- | ----------|---------
+metabolite 1 | 8.0 | 7.0  
+metabolite 2 | 4.2 | 3.0 
+...|...|...
+metabolite n | 1.5 | 0.5
+
+This table can either be created in R or read from an external file.
+Here is an example of table in R with three metabolites that will be integrated:
+```
+reg <- data.frame(metabolite = c("Creatine", "Creatinine", "Glucose"), 
+    ppm.start = c(3.046,4.068, 5.26), 
+    ppm.end = c(3.040,4.054, 5.23)) 
+```
