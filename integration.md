@@ -8,7 +8,7 @@ As example data set this tutorial makes use of the publically available dataset 
 available in the [MetaboLights](https://www.ebi.ac.uk/metabolights/) repository. 
 
 The dataset is composed of 132 <sup>1</sup>H-NMR spectra from human urine of healthy and diabetic subjects.
-The version of the data used here has already been aligned using the R package ['speaq'](https://cran.r-project.org/web/packages/speaq/index.html) and normalised using the PQN method.
+The version of the data used here has already been aligned using the R package ['speaq'](https://cran.r-project.org/web/packages/speaq/index.html) and normalised using the PQN method. This dataset can be downloaded from the [data folder](/data/MTBLS1_aligned_normalised.csv).
 
 Firstly, install the ptw package and load the [integration_functions.R](https://github.com/gggraca/MAR/integration_functions.R), which should be stored in the working directory.
 ```
