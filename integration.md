@@ -1,14 +1,14 @@
 # Spectral integration
 
-The following text demonstrates how to perform numeric integration (using the trapezoid method<sup>[1](#ref1)</sup>) of defined NMR spectral peaks.
+The following text demonstrates how to perform numeric integration (using the trapezoid method<sup>[1](#References)</sup>) of defined NMR spectral peaks.
 It requires the functions contained in the file [integration_functions.R](https://github.com/gggraca/MAR/integration_functions.R) and also the “baseline.corr” function from the R package ['ptw'](https://cran.r-project.org/web/packages/ptw/index.html).
 
-As example data set this tutorial makes use of the publicly available dataset from Salek *et al.* 2007 <sup>[2](#ref2)</sup>
+As example data set this tutorial makes use of the publicly available dataset from Salek *et al.* 2007 <sup>[2](#References)</sup>
 ["A metabolomic study of urinary changes in type 2 diabetes in human compared to the control group"](https://www.ebi.ac.uk/metabolights/MTBLS1/),
 available through the [MetaboLights](https://www.ebi.ac.uk/metabolights/) repository. 
 
 The dataset is composed of 132 <sup>1</sup>H-NMR spectra from human urine of healthy and diabetic subjects.
-The version of the data used here has already been aligned using the R package ['speaq'](https://cran.r-project.org/web/packages/speaq/index.html) and normalised using the PQN method<sup>[3](#ref3)</sup>. This dataset can be downloaded from the [data folder](/data/MTBLS1_aligned_normalised.csv).
+The version of the data used here has already been aligned using the R package ['speaq'](https://cran.r-project.org/web/packages/speaq/index.html) and normalised using the PQN method<sup>[3](#References)</sup>. This dataset can be downloaded from the [data folder](/data/MTBLS1_aligned_normalised.csv).
 
 Firstly, install the ptw package and load the [integration_functions.R](https://github.com/gggraca/MAR/integration_functions.R), which should be stored in the working directory.
 ```
@@ -63,8 +63,8 @@ The generated plots for the example are shown below:
 
 <h3>References</h3>
 
-<a name="ref1">1. Trapezoid Rule: https://en.wikipedia.org/wiki/Trapezoidal_rule </a>
+1. Trapezoid Rule: https://en.wikipedia.org/wiki/Trapezoidal_rule
 
-<a name="ref2”>2. Salek, R. M., Maguire, M. L., Bentley, E., Rubtsov, D. V., Hough, T., Cheeseman, M., Nunez, D., Sweatman, B. C., Haselden, J. N., Cox, R. D., Connor, S. C., Griffin, J. L. A metabolomic comparison of urinary changes in type 2 diabetes in mouse, rat, and human. Physiological Genomics 2007 29:2, 99-108. https://doi.org/10.1152/physiolgenomics.00194.2006</a>
+2. Salek, R. M., Maguire, M. L., Bentley, E., Rubtsov, D. V., Hough, T., Cheeseman, M., Nunez, D., Sweatman, B. C., Haselden, J. N., Cox, R. D., Connor, S. C., Griffin, J. L. A metabolomic comparison of urinary changes in type 2 diabetes in mouse, rat, and human. Physiological Genomics 2007 29:2, 99-108. https://doi.org/10.1152/physiolgenomics.00194.2006
          
-<a name="ref3”>3. Dieterle F, Ross A, Schlotterbeck G, Senn H. Probabilistic quotient normalization as robust method to account for dilution of complex biological mixtures. Application in 1H NMR metabonomics. Anal Chem. 2006 Jul 1;78(13):4281-90.  https://doi.org/10.1021/ac051632c</a> 
+3. Dieterle F, Ross A, Schlotterbeck G, Senn H. Probabilistic quotient normalization as robust method to account for dilution of complex biological mixtures. Application in 1H NMR metabonomics. Anal Chem. 2006 Jul 1;78(13):4281-90.  https://doi.org/10.1021/ac051632c
