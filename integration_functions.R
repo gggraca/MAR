@@ -37,12 +37,12 @@ bas <- function(X, f1, f2) {
   if(dim(X)[1] < dim(X)[2]){ #if the matrix is not in the format [variables,samples] it will be transposed
     X<-t(X)
   }
-        lim<-which(X[,1] > f2 & X[,1] < f1)
-        int1<-lim[1]
-        int2<-lim[length(lim)]
-        ints<-seq(from = int1, to = int2, by = 1)
-        M<-apply(X[ints,2:dim(X)[2]], 2, baseline.corr)
-        M<-cbind(X[ints,1], M)
+        lim <- which(X[,1] > f2 & X[,1] < f1)
+        int1 <- lim[1]
+        int2 <- lim[length(lim)]
+        ints <- seq(from = int1, to = int2, by = 1)
+        M<- apply(X[ints,2:dim(X)[2]], 2, baseline.corr)
+        M <- cbind(X[ints,1], M)
         return(M)
 }
 
@@ -71,15 +71,25 @@ bintegral <- function(X,f1,f2) {
         return(s)
 }
 
-# function to plot stacked spectral regions
-plotNMR <- function(X,f1,f2){
+# function to plot stacked NMR spectra
+# ppm scale can be omitted by setting ppm = FALSE
+# title can be provided as option
+# Goncalo Graca, g.gomes-da-graca@imperial.ac.uk, 29 April 2020
+plotNMR<-function(X, f1 = max(X[,1]), f2 = min(X[,1]), ppm = TRUE, title = ""){
   if(dim(X)[1] < dim(X)[2]){ #if the matrix is not in the format [variables,samples] it will be transposed
     X<-t(X)
   }
-  ints <- which(X[,1] > f2 & X[,1] < f1)
-  a <- ints[1]
-  b <- ints[length(ints)]
-  matplot(X[a:b,1],X[a:b,2:dim(X)[2]],type="l",lty=1,xlab='chemical shift (ppm)',ylab='intensity (a.u.)',xlim=rev(range(X[a:b,1])))
+  lim<-which(X[,1]>f2 & X[,1]<f1)
+  l2<-lim[1]
+  l1<-lim[length(lim)]
+  matplot(X[l1:l2,1], X[l1:l2,2:dim(X)[2]], type = "l", xlim = rev(range(X[l1:l2,1])),
+          xlab = "chemical shift (ppm)", ylab = "intensity (a.u.)", main = title, lty = 1)
+  if(!ppm){
+    # xscale <- seq(l2,l1,1)
+    xscale <- lim
+    matplot(xscale, X[l1:l2,2:dim(X)[2]], type = "l", xlab = "variable number", 
+            ylab = "intensity (a.u.)", main = title, lty = 1)
+  }
 }
 
 # function to integrate and plot multiple regions with or without baseline correction
