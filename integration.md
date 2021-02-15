@@ -63,6 +63,6 @@ The generated plots for the example are shown below:
 
 <h3>References</h3>
 
-<a name="myfootnote1">1</a> https://en.wikipedia.org/wiki/Trapezoidal_rule](https://en.wikipedia.org/wiki/Trapezoidal_rule </a>
+<a name="myfootnote1">1</a> https://en.wikipedia.org/wiki/Trapezoidal_rule </a>
 <a name="myfootnote2”>2</a> Salek, R. M., Maguire, M. L., Bentley, E., Rubtsov, D. V., Hough, T., Cheeseman, M., Nunez, D., Sweatman, B. C., Haselden, J. N., Cox, R. D., Connor, S. C., Griffin, J. L. A metabolomic comparison of urinary changes in type 2 diabetes in mouse, rat, and human. Physiological Genomics 2007 29:2, 99-108. https://doi.org/10.1152/physiolgenomics.00194.2006</a>
 <a name="myfootnote3”>3</a> Dieterle F, Ross A, Schlotterbeck G, Senn H. Probabilistic quotient normalization as robust method to account for dilution of complex biological mixtures. Application in 1H NMR metabonomics. Anal Chem. 2006 Jul 1;78(13):4281-90.  https://doi.org/10.1021/ac051632c</a> 
