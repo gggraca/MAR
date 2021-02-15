@@ -1,14 +1,14 @@
 # Spectral integration
 
-The following text demosntrate how to perform numeric integration of defined NMR spectral peaks.
-It requires the functions contained in the file [integration_functions.R](https://github.com/gggraca/MAR/integration_functions.R) and also a function from the R package ['ptw'](https://cran.r-project.org/web/packages/ptw/index.html).
+The following text demonstrates how to perform numeric integration (using the trapezoid method <sup>[1](#myfootnote1)</sup>) of defined NMR spectral peaks.
+It requires the functions contained in the file [integration_functions.R](https://github.com/gggraca/MAR/integration_functions.R) and also the “baseline.corr” function from the R package ['ptw'](https://cran.r-project.org/web/packages/ptw/index.html).
 
-As example data set this tutorial makes use of the publically available dataset from Salek *et al.* 2007 
+As example data set this tutorial makes use of the publicly available dataset from Salek *et al.* 2007 <sup>[2](#myfootnote2)</sup> 
 ["A metabolomic study of urinary changes in type 2 diabetes in human compared to the control group"](https://www.ebi.ac.uk/metabolights/MTBLS1/),
-available in the [MetaboLights](https://www.ebi.ac.uk/metabolights/) repository. 
+available through the [MetaboLights](https://www.ebi.ac.uk/metabolights/) repository. 
 
 The dataset is composed of 132 <sup>1</sup>H-NMR spectra from human urine of healthy and diabetic subjects.
-The version of the data used here has already been aligned using the R package ['speaq'](https://cran.r-project.org/web/packages/speaq/index.html) and normalised using the PQN method. This dataset can be downloaded from the [data folder](/data/MTBLS1_aligned_normalised.csv).
+The version of the data used here has already been aligned using the R package ['speaq'](https://cran.r-project.org/web/packages/speaq/index.html) and normalised using the PQN method <sup>[3](#myfootnote3)</sup>. This dataset can be downloaded from the [data folder](/data/MTBLS1_aligned_normalised.csv).
 
 Firstly, install the ptw package and load the [integration_functions.R](https://github.com/gggraca/MAR/integration_functions.R), which should be stored in the working directory.
 ```
@@ -25,7 +25,7 @@ plotNMR(spec, 10, 0)
 ```
 ![Stacked Spectra](/images/stacked_urine.png)
 
-Now it is necessary to create a table that contains the metabolite regions to be integrated. The table should have the followin format:
+Now it is necessary to create a table that contains the metabolite regions to be integrated. The table should have the following format:
 Metabolite | ppm.start | ppm.end
 ---------- | ----------|---------
 metabolite 1 | 8.0 | 7.0  
@@ -60,3 +60,9 @@ The generated plots for the example are shown below:
 ![Creatine](/images/Creatine_3.04_3.046_ppm.png)
 ![Creatinine](/images/Creatinine_4.054_4.068_ppm.png)
 ![Glucose](/images/Glucose_5.23_5.26_ppm.png)
+
+<h3>References</h3>
+
+<a name="myfootnote1">1</a> https://en.wikipedia.org/wiki/Trapezoidal_rule](https://en.wikipedia.org/wiki/Trapezoidal_rule </a>
+<a name="myfootnote2”>2</a> Salek, R. M., Maguire, M. L., Bentley, E., Rubtsov, D. V., Hough, T., Cheeseman, M., Nunez, D., Sweatman, B. C., Haselden, J. N., Cox, R. D., Connor, S. C., Griffin, J. L. A metabolomic comparison of urinary changes in type 2 diabetes in mouse, rat, and human. Physiological Genomics 2007 29:2, 99-108. https://doi.org/10.1152/physiolgenomics.00194.2006</a>
+<a name="myfootnote3”>3</a> Dieterle F, Ross A, Schlotterbeck G, Senn H. Probabilistic quotient normalization as robust method to account for dilution of complex biological mixtures. Application in 1H NMR metabonomics. Anal Chem. 2006 Jul 1;78(13):4281-90.  https://doi.org/10.1021/ac051632c</a> 
