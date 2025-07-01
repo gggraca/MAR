@@ -5,7 +5,7 @@
 # Goncalo Graca 1 July 2025
 
 calibrate <- function(X,f1,f2){
-  idx <- which(X[,1] > ppm2 & X[,1] < ppm1)
+  idx <- which(X[,1] > f2 & X[,1] < f1)
   ind <- apply(X[idx,2:ncol(X)], 2, which.max)
   med <- ind[1]
   d <- as.numeric(lapply(ind,function(X) X-med))
