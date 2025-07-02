@@ -3,12 +3,14 @@
 # Goncalo Graca, 1 July 2025
 
 # Main function:
-read1DNMR <- function(filepaths,  xmax = 10, xmin = 0.5, npoints = 64000, simplify = TRUE){
+read1DNMR <- function(filepaths,  xmax, xmin, npoints = 64000, simplify = TRUE){
   s <- lapply(filepaths, readBruker1D)
-  f <- interpolate_1DNMR(s)
+  f <- interpolate_1DNMR(s, xmax, xmin, npoints = 64000)
   if(simplify){
     r <- rbind(f$axis, f$data_1r)
     r <- t(r)
+  } else {
+    r <- f
   }
   return(r)
 }
@@ -48,7 +50,7 @@ readBruker1D <- function(filepath) {
   if(length(ppm) > SIF2) ppm <- ppm[-1]
   
   # get intensities
-  spath <- paste(filepath,"/", "1r", sep = "")
+  spath <- paste(filepath, "1r", sep = "")
   to.read <-  file(spath,"rb")
   m <- readBin(to.read, integer(), n = SIF2, endian = "little")
   close(to.read)
@@ -64,7 +66,7 @@ readBruker1D <- function(filepath) {
 }
 
 # interpolate spectra to get same chemical shift
-interpolate_1DNMR <- function(spectra_object, xmax = xmax, xmin = xmin, npoints = 64000){
+interpolate_1DNMR <- function(spectra_object, xmax, xmin, npoints = 64000){
   
   intensities <- NULL
   spectra_names <- NULL
