@@ -19,7 +19,7 @@ read1DNMR <- function(filepaths,  xmax = 10, xmin = 0.5, npoints = 64000, simpli
 # read from processed 1r Bruker Topspin files and metadata 
 readBruker1D <- function(filepath) {
   # this reads the parameters need to get the intensities and ppm scale
-  filepath <- paste(filepath, "pdata/1/", sep = "")
+  # filepath <- paste(filepath, "pdata/1/", sep = "")
   procs <- readLines(paste(filepath,"procs", sep = ""))
   title <- readLines(paste(filepath,"title", sep = ""), warn = FALSE)
   # if(nchar(title) == 0) title <- filepath
@@ -64,7 +64,7 @@ readBruker1D <- function(filepath) {
 }
 
 # interpolate spectra to get same chemical shift
-interpolate_1DNMR <- function(spectra_object, xmax = 10, xmin = 0.5, npoints = 64000){
+interpolate_1DNMR <- function(spectra_object, xmax = xmax, xmin = xmin, npoints = 64000){
   
   intensities <- NULL
   spectra_names <- NULL
