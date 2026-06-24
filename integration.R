@@ -95,22 +95,26 @@ plotNMR<-function(X, f1 = max(X[,1]), f2 = min(X[,1]), ppm = TRUE, title = ""){
 
 # function to integrate multiple regions with or without baseline correction
 # jpeg figures will saved on the workspace folder corresponding to each integrated peak, before and after baseline correction
-multiIntegration <- function(M, reg, baseline=TRUE) {
-    if(nrow(M) < ncol(M)){ #if the matrix is not in the format [variables,samples] it will be transposed
+multiIntegration <- function(M, reg, baseline=TRUE, groups=NA, projectName="") {
+    #if the matrix is not in the format [variables,samples] it will be transposed
+    if(nrow(M) < ncol(M)){
         M <- t(M)
     }
-    intg <- matrix(NA, ncol = ncol(M)-1, nrow = nrow(reg)) # create matrix to store integration results
+	# create matrix to store integration results
+    intg <- matrix(NA, ncol = ncol(M)-1, nrow = nrow(reg))
     if(baseline){
         for(i in 1:nrow(reg)){
-            intg[i,] <- bintegral(M, reg[i,2], reg[i,3])
+            intg[i,] <- bintegral(M, reg[i,"ppm.start"], reg[i,"ppm.end"])
         }
     }
     if(!baseline){
         for(i in 1:dim(reg)[1]){
-            intg[i,] <- integral(M, reg[i,2], reg[i,3])
+            intg[i,] <- integral(M, reg[i,"ppm.start"], reg[i,"ppm.end"])
         }
     }
-    result <- list(spectra=M, integrationRegions=reg, integrals=intg, baseline=baseline, groups=NA, projectName="") 
+    result <- list(spectra=M, integrationRegions=reg, 
+                   integrals=intg, baseline=baseline, 
+                   groups=groups, projectName=projectName)
 }
 
 
@@ -126,7 +130,7 @@ saveResults <- function(resultObject){
     ints <- which(M[,1] > reg[i,3] & M[,1] < reg[i,2])
     a <- ints[1]
     b <- ints[length(ints)]
-    if(resultObject$baseline=TRUE){
+    if(isTRUE(resultObject$baseline)){
         T <- bas(M, reg[i,2], reg[i,3])
     }
     intg <- resultObject$intg
@@ -134,7 +138,7 @@ saveResults <- function(resultObject){
     # plot results
     jpeg(paste(reg[i,1], "_", reg[i,3], "_", reg[i,2], "_ppm", ".jpg", sep=""), res=300, quality=100, 
                 height=8, width=18, units="cm")
-        if(resultObject$baseline=TRUE){
+        if(isTRUE(resultObject$baseline)){
             par(mfrow=c(1,3))
             matplot(T[,1], T[,2:dim(T)[2]], type="l", lty=1, xlab="chemical shift (ppm)", ylab="intensity (a.u.)", 
                 col = grp, xlim = rev(range(T[,1])), main = "with baseline correction")
