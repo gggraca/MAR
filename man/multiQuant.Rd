@@ -9,7 +9,7 @@ multiQuant(
   reg,
   reference = "ERETIC",
   refConc = 10,
-  spNames = NULL,
+  SpNames = NULL,
   baseline = TRUE,
   groups = NA,
   projectName = ""
@@ -30,7 +30,7 @@ named in the \code{reg} data frame.}
 
 \item{refConc}{The concentration of the reference compound/metabolite in mM}
 
-\item{spNames}{A string containing the sample names. The default
+\item{SpNames}{A string containing the sample names. The default
 is \code{NULL}.}
 
 \item{baseline}{A logical value to specify if baseline should be performed.
@@ -65,7 +65,7 @@ reg <- data.frame(metabolite = c("Creatine", "Creatinine", "Glucose"),
                   nprotons = c(3, 2, 1), ppm.start=c(3.046, 4.068, 5.26), 
                    ppm.end=c(3.040, 4.054, 5.23))
 quanResult <- multiQuant(urine, reg, reference="Glucose", refConc=1, 
-                         spNames=NULL, baseline=TRUE, groups=NA, 
+                         SpNames=NULL, baseline=TRUE, groups=NA, 
                          projectName="MTBLS1"))
 }
 \author{
