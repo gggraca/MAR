@@ -2,7 +2,7 @@
 #' 
 #' @description
 #' Function to align spectra according to a particular signal.
-#  To use after 'readBrukerNMR' function.
+#  To use after 'read1DNMR' function.
 #' 
 #' 
 #' @author Goncalo Graca, Imperial College London 
