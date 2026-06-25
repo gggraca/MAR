@@ -30,7 +30,10 @@
 #' 
 #' @export
 saveQuantification <- function(resultObject, DirPath=""){
-	if(!exists(resultObject$quantification)) stop("No quantification result found in the results!")
+	quan <- resultObject$quantification
+	if(!exists("quan")) {
+		stop("No quantification result found in the results!")
+	}
     M <- resultObject$spectra
     # if the matrix is not in the format [variables,samples] it will be transposed
     if(nrow(M) < ncol(M)){ 
@@ -45,7 +48,7 @@ saveQuantification <- function(resultObject, DirPath=""){
         if(isTRUE(resultObject$baseline)){
             T <- bas(M, reg[i,"ppm.start"], reg[i,"ppm.end"])
         }
-        quan <- resultObject$quantification
+        groups <- resultObject$groups
         if(is.na(groups)) {
     	    grp <- seq_len(nrow(M))
         }

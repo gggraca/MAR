@@ -91,8 +91,12 @@ multiQuant <- function(M, reg, reference="ERETIC", refConc=10, SpNames=NULL,
         rownames(quan) <- SpNames
     }
     
+    intg <- data.frame(intg)
+    quan <- data.frame(quan)
+    
     result <- list(spectra=M, integrationRegions=reg, 
-                   integrals=intg, quantification=quan, baseline,
-                   reference, refConc, groups, SpNames, projectName)
+                   integrals=intg, quantification=quan, baseline=baseline,
+                   reference=reference, refConc=refConc, groups=groups,
+                   SpNames=SpNames, projectName=projectName)
     return(result)
 }

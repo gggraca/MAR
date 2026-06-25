@@ -69,7 +69,7 @@ multiIntegration <- function(M, reg, baseline=TRUE, SpNames=NULL,
     } else colnames(intg) <- SpNames
     
     result <- list(spectra=M, integrationRegions=reg, 
-                   integrals=intg, baseline, SpNames,
-                   groups, projectName)
+                   integrals=intg, baseline=baseline, SpNames=SpNames,
+                   groups=groups, projectName=projectName)
     return(result)
 }
