@@ -22,7 +22,7 @@
 #' The default value is \code{TRUE}.
 #' @param groups A string of values or characters that specify any sample 
 #' groups (e.g. controls and disease). The default is \code{NA}.
-#' @projectName The name of the project, which will be appended to the results
+#' @param projectName The name of the project, which will be appended to the results
 #' files upon saving.
 #'
 #' A list containing containing several objects: 
@@ -32,10 +32,14 @@
 #' other the metadata such as \code{baseline}, the groups labels \code{groups},
 #'  sample names \code{spNames}, and project name \code{projectName}.
 #' 
-#' @example ##
+#' @examples
+#' data("urine")
+#' reg <- data.frame(metabolite = c("Creatine", "Creatinine", "Glucose"), 
+#'                   nprotons = c(3, 2, 1), ppm.start=c(3.046, 4.068, 5.26), 
+#'                    ppm.end=c(3.040, 4.054, 5.23))
+#' integrationResult <- multiIntegrate(urine, reg, spNames=NULL, baseline=TRUE, 
+#'                                     groups=NA, projectName="MTBLS1"))
 #' @export
-
-
 multiIntegration <- function(M, reg, baseline=TRUE, SpNames=NULL, 
                             groups=NA, projectName="") {
     #if the matrix is not in the format [variables,samples] it will be transposed

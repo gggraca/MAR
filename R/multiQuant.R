@@ -25,8 +25,8 @@
 #' The default value is \code{TRUE}.
 #' @param groups A string of values or characters that specify any sample 
 #' groups (e.g. controls and disease). The default is \code{NA}.
-#' @projectName The name of the project, which will be appended to the results
-#' files upon saving.
+#' @param projectName The name of the project, which will be appended to the 
+#' results files upon saving.
 #'
 #' @return A list containing containing several objects: 
 #' the spectra matrix \code{spectra}, data frame containing the integration 
@@ -37,7 +37,14 @@
 #' (\code{refConc}), the groups labels \code{groups}, sample names 
 #' \code{spNames}, and project name \code{projectName}.
 #' 
-#' @example ##
+#' @examples
+#' data("urine")
+#' reg <- data.frame(metabolite = c("Creatine", "Creatinine", "Glucose"), 
+#'                   nprotons = c(3, 2, 1), ppm.start=c(3.046, 4.068, 5.26), 
+#'                    ppm.end=c(3.040, 4.054, 5.23))
+#' quanResult <- multiQuant(urine, reg, reference="Glucose", refConc=1, 
+#'                          spNames=NULL, baseline=TRUE, groups=NA, 
+#'                          projectName="MTBLS1"))
 #' @export
 multiQuant <- function(M, reg, reference="ERETIC", refConc=10, spNames=NULL, 
                        baseline=TRUE, groups=NA, projectName="") {

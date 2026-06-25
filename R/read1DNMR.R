@@ -20,7 +20,8 @@
 #' @return The end result is outputted as a list with ppm, intensity matrix 
 #' and spectra names from title. If \code{simplify} is set to \code{TRUE},
 #' a matrix with the ppm scale and spectra intensities will be returned.
-#' @example 
+#' @examples
+#' s <- read1DNMR(spaths, xmax=18, xmin=-1, npoints = 64000, simplify=TRUE)
 #' @export
 # Main function:
 read1DNMR <- function(filepaths, xmax, xmin, npoints=64000, simplify=TRUE){

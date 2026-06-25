@@ -17,7 +17,11 @@
 #' the spectral reference (e.g. ERETIC, TSP, DSS, glucose...). 
 #'
 #' @return A matrix of 1H-NMR spectra with the calibrated ppm scale.
-#' @example 
+#' 
+#' @examples
+#' data("urine")
+#' cs <- calibrate(urine, 0.1, -0.1)
+#' 
 #' @export
 calibrate <- function(X,f1,f2){
     idx <- which(X[,1] > f2 & X[,1] < f1)

@@ -24,7 +24,9 @@
 #' Images and quantification results table are saved to the user-defined folder 
 #' \code{DirPath}.
 #' 
-#' @example ##
+#' @examples
+#' userDir <- tempdir()
+#' saveQuantification(result, DirPath=userDir)
 #' 
 #' @export
 saveQuantification <- function(resultObject, DirPath=""){

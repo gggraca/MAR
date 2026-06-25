@@ -9,7 +9,7 @@
 #' 
 #' @author Goncalo Graca, Imperial College London 
 #'
-#' #' @param resultObject A list containing containing several objects: 
+#' @param resultObject A list containing containing several objects: 
 #' the spectra matrix \code{spectra}, data frame containing the integration 
 #' regions, the number of protons and chemical shift of each metabolite signal,
 #' \code{integrationRegions}, the integration results (\code{integrals} and 
@@ -22,7 +22,10 @@
 #' otherwise barplots of each sample integral are saved.  
 #' Images and integration results table are saved to the user-defined folder 
 #' \code{DirPath}.
-#' @example ##
+#' 
+#' @examples
+#' userDir <- tempdir()
+#' saveIntegration(result, DirPath=userDir)
 #' @export
 
 # save stacked plots of the integration windows and boxplots with the peak area values

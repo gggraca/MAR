@@ -18,7 +18,10 @@
 #' @param title Title of the plot (optional).
 #'
 #' @return A stacked plot of the full spectra or spectra region.
-#' @example 
+#' @examples 
+#' data("urine")
+#' plotNMR(urine)
+#' 
 #' @export
 plotNMR<-function(X, f1 = max(X[,1]), f2 = min(X[,1]), ppm = TRUE, title = ""){
 	 #if the matrix is not in the format [variables,samples] it will be transposed
