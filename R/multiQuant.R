@@ -19,7 +19,7 @@
 #' @param reference Exact name of the reference metabolite or compound, as
 #' named in the \code{reg} data frame.
 #' @param refConc The concentration of the reference compound/metabolite in mM
-#' @param spNames A string containing the sample names. The default 
+#' @param SpNames A string containing the sample names. The default 
 #' is \code{NULL}.
 #' @param baseline A logical value to specify if baseline should be performed.
 #' The default value is \code{TRUE}.
@@ -43,10 +43,10 @@
 #'                   nprotons = c(3, 2, 1), ppm.start=c(3.046, 4.068, 5.26), 
 #'                    ppm.end=c(3.040, 4.054, 5.23))
 #' quanResult <- multiQuant(urine, reg, reference="Glucose", refConc=1, 
-#'                          spNames=NULL, baseline=TRUE, groups=NA, 
+#'                          SpNames=NULL, baseline=TRUE, groups=NA, 
 #'                          projectName="MTBLS1"))
 #' @export
-multiQuant <- function(M, reg, reference="ERETIC", refConc=10, spNames=NULL, 
+multiQuant <- function(M, reg, reference="ERETIC", refConc=10, SpNames=NULL, 
                        baseline=TRUE, groups=NA, projectName="") {
     #if the matrix is not in the format [variables,samples] it will be transposed
     if(nrow(M) < ncol(M)){
@@ -71,12 +71,11 @@ multiQuant <- function(M, reg, reference="ERETIC", refConc=10, spNames=NULL,
     
     # run the quantification
     quan <- lapply(seq_len(nrow(intg)), function(x) {
-    	(refConc * intg[x,]) / (reg[x,"nprotons"] * intg[refIdx,])
+    	(refConc * intg[x,] * reg[refIdx,"nprotons"]) / 
+    		(reg[x,"nprotons"] * intg[refIdx,])
     })
     # convert from list to matrix
     quan <- do.call(rbind,quan)
-    # remove the reference from the result
-    quan <- quan[-refIdx,]
     
     # transpose both integrals and quantification matrices
     intg <- t(intg)
@@ -94,6 +93,6 @@ multiQuant <- function(M, reg, reference="ERETIC", refConc=10, spNames=NULL,
     
     result <- list(spectra=M, integrationRegions=reg, 
                    integrals=intg, quantification=quan, baseline,
-                   reference, refConc, groups, spNames, projectName)
+                   reference, refConc, groups, SpNames, projectName)
     return(result)
 }

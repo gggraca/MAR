@@ -35,10 +35,11 @@
 #' @examples
 #' data("urine")
 #' reg <- data.frame(metabolite = c("Creatine", "Creatinine", "Glucose"), 
-#'                   nprotons = c(3, 2, 1), ppm.start=c(3.046, 4.068, 5.26), 
+#'                   nprotons = c(3, 2, 1), ppm=c(3.04, 4.06, 5.23), 
+#'                   ppm.start=c(3.046, 4.068, 5.26), 
 #'                    ppm.end=c(3.040, 4.054, 5.23))
-#' integrationResult <- multiIntegrate(urine, reg, spNames=NULL, baseline=TRUE, 
-#'                                     groups=NA, projectName="MTBLS1"))
+#' integrationResult <- multiIntegration(urine, reg, baseline=TRUE, SpNames=NULL, 
+#'                                     groups=NA, projectName="MTBLS1")
 #' @export
 multiIntegration <- function(M, reg, baseline=TRUE, SpNames=NULL, 
                             groups=NA, projectName="") {
@@ -62,7 +63,7 @@ multiIntegration <- function(M, reg, baseline=TRUE, SpNames=NULL,
     # transpose integrals table to samples as rows and metabolites as columns
     intg <- t(intg)
     # add metabolites and sample names (if available)
-    colnames(intg) <- rownames(intg) <- reg[,"metabolite"]
+    colnames(intg) <- reg[,"metabolite"]
     if(is.null(SpNames)){
         rownames(intg) <- colnames(M)[2:ncol(M)]
     } else colnames(intg) <- SpNames
