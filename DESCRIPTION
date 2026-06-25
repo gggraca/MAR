@@ -1,0 +1,24 @@
+Package: Metabolomics And nmR toolbox MAR
+Title: A toolbox for 1H-NMR data preprocessing and analysis 
+Version: 0.99.0
+Date: 2026-06-25
+Authors@R: c(person(given = "Goncalo", family = "Graca", role = c("aut", "cre"),
+           email = "ggraca22@gmail.com", comment = c(ORCID = "0000-0002-0876-3876")))
+Description: Contains several functions to load, plot, integrate and quantify metabolites from 1H-NMR spectra.
+Depends:
+    R (>= 4.5.0),
+    ptw (>= 1.9)
+License: GPL-3
+BugReports: https://github.com/gggraca/MAR/issues
+URL: https://github.com/gggraca/MAR
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+Suggests:
+    rmarkdown,
+    knitr,
+    testthat (>= 3.0.0),
+    BiocStyle
+LazyData: false
+VignetteBuilder: knitr
+Config/testthat/edition: 3
+Config/roxygen2/version: 8.0.0
