@@ -2,7 +2,7 @@
 
 A collection of functions and scripts to read, process and analyse proton 1D NMR spectra.
 
-Some examples of application of these methods can be seen in the published papers. <sup>[1](#myfootnote1),</sup> <sup>[2](#myfootnote2),</sup> <sup>[3](#myfootnote3)</sup>
+Some examples of application of the code from the toolbox can be found in the published papers. <sup>[1](#myfootnote1),</sup> <sup>[2](#myfootnote2),</sup> <sup>[3](#myfootnote3)</sup> (see references).
 
 <h3> Description </h3>
 
@@ -10,7 +10,7 @@ Main functionalities include data import from [Bruker](https://www.bruker.com/en
 
 <h3> Installation </h3>
 
-To install the 'Metabolomics And nmR toolbox' use the commands below.
+To install the 'Metabolomics And nmR toolbox' use the commands below:
 ```
 if (!require("remotes", quietly = TRUE))
     install.packages("remotes")
@@ -24,6 +24,7 @@ install.packages("ptw")
 
 <h3> Examples </h3>
 
+Example of how to import 1D NMR data can be found in the [import_data](https://github.com/gggraca/MAR/blob/main/vignettes/import_data.md) vignette.
 A tipical example of data integration and quantification can be found in the vignettes folder as [integration_examples](https://github.com/gggraca/MAR/blob/main/vignettes/integration_examples.md). 
 
 
