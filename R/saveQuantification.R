@@ -30,15 +30,18 @@
 #' 
 #' @export
 saveQuantification <- function(resultObject, DirPath=""){
+	# check if quantification data exists on resultObject
 	quan <- resultObject$quantification
 	if(!exists("quan")) {
 		stop("No quantification result found in the results!")
 	}
+	# get spectra from resultObject
     M <- resultObject$spectra
     # if the matrix is not in the format [variables,samples] it will be transposed
     if(nrow(M) < ncol(M)){ 
         M <- t(M)
     }
+    # get integrated regions from resultObject
     reg <- resultObject$integrationRegions
     
     for(i in seq_len(nrow(reg))){
@@ -48,15 +51,19 @@ saveQuantification <- function(resultObject, DirPath=""){
         if(isTRUE(resultObject$baseline)){
             T <- bas(M, reg[i,"ppm.start"], reg[i,"ppm.end"])
         }
+        
+        # get groups and sample names from resultObject
         groups <- resultObject$groups
+        SpNames <- resultObject$SpNames
+        
         if(is.na(groups)) {
     	    grp <- seq_len(nrow(M))
         }
         if(!is.null(SpNames)){
-            grp_names <- spNames
+            grp_names <- SpNames
         } else grp_names <- seq_len(nrow(M))
     
-        # plot results
+        # Save plots of integrated regions and quantification results
         jpegPath <- file.path(DirPath, 
         	                paste(reg[i,"metabolite"], "_", reg[i,"ppm.end"], "_",
                                      reg[i,"ppm.start"], "_ppm", ".jpg", sep=""))

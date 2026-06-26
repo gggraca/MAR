@@ -31,11 +31,14 @@
 # save stacked plots of the integration windows and boxplots with the peak area values
 # the code below takes the indexes of the chemical shifts of the integration/baseline regions:
 saveIntegration <- function(resultObject, DirPath=""){
+	# get spectra from resultObject
     M <- resultObject$spectra
+    
     # if the matrix is not in the format [variables,samples] it will be transposed
     if(nrow(M) < ncol(M)){ 
         M <- t(M)
     }
+    # get integrated regions from resultObject
     reg <- resultObject$integrationRegions
     
     for(i in seq_len(nrow(reg))){
@@ -45,7 +48,11 @@ saveIntegration <- function(resultObject, DirPath=""){
         if(isTRUE(resultObject$baseline)){
              T <- bas(M, reg[i,"ppm.start"], reg[i,"ppm.end"])
         }
+        # get integrals, groups and sample names from resultObject
         intg <- resultObject$intg
+        groups <- resultObject$groups
+        SpNames <- resultObject$SpNames
+        
         if(is.na(groups)) {
     	    grp <- seq_len(nrow(M))
         }
@@ -53,7 +60,7 @@ saveIntegration <- function(resultObject, DirPath=""){
              grp_names <- spNames
         } else grp_names <- seq_len(nrow(M))
     
-    # plot results
+        # Save plots of integrated regions and integration results
         jpegPath <- file.path(DirPath, 
         	                paste(reg[i,"metabolite"], "_", reg[i,"ppm.end"], "_",
                                      reg[i,"ppm.start"], "_ppm", ".jpg", sep=""))
