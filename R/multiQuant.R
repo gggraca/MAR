@@ -38,13 +38,14 @@
 #' \code{spNames}, and project name \code{projectName}.
 #' 
 #' @examples
-#' data("urine")
+#' data("mtbls1")
 #' reg <- data.frame(metabolite = c("Creatine", "Creatinine", "Glucose"), 
-#'                   nprotons = c(3, 2, 1), ppm.start=c(3.046, 4.068, 5.26), 
+#'                   nprotons = c(3, 2, 1), ppm=c(3.04, 4.06, 5.23), 
+#'                   ppm.start=c(3.046, 4.068, 5.26), 
 #'                    ppm.end=c(3.040, 4.054, 5.23))
 #' quanResult <- multiQuant(urine, reg, reference="Glucose", refConc=1, 
 #'                          SpNames=NULL, baseline=TRUE, groups=NA, 
-#'                          projectName="MTBLS1"))
+#'                          projectName="MTBLS1")
 #' @export
 multiQuant <- function(M, reg, reference="ERETIC", refConc=10, SpNames=NULL, 
                        baseline=TRUE, groups=NA, projectName="") {

@@ -24,8 +24,15 @@
 #' \code{DirPath}.
 #' 
 #' @examples
+#' data("mtbls1")
+#' reg <- data.frame(metabolite = c("Creatine", "Creatinine", "Glucose"), 
+#'                   nprotons = c(3, 2, 1), ppm=c(3.04, 4.06, 5.23), 
+#'                   ppm.start=c(3.046, 4.068, 5.26), 
+#'                    ppm.end=c(3.040, 4.054, 5.23))
+#' integrationResult <- multiIntegration(urine, reg, baseline=TRUE, SpNames=NULL, 
+#'                                     groups=NA, projectName="MTBLS1")
 #' userDir <- tempdir()
-#' saveIntegration(result, DirPath=userDir)
+#' saveIntegration(integrationResult, DirPath=userDir)
 #' @export
 
 # save stacked plots of the integration windows and boxplots with the peak area values
@@ -101,6 +108,6 @@ saveIntegration <- function(resultObject, DirPath=""){
     # Save a table with integrals
     csvPath <- file.path(DirPath, 
                 paste(resultObject$projectName, 
-                "_", "integration", ".csv", sep=""))
+                "_", "integration_result", ".csv", sep=""))
     write.csv(resultObject$integrals, csvPath, quote=FALSE)
 }
