@@ -77,7 +77,7 @@ saveQuantification <- function(resultObject, DirPath=""){
                 barplot(quan[,i], 
                         main=paste(reg[i,"metabolite"], 
                         " ", reg[i,"ppm"], " ppm"), names=grp_names, 
-                xlab="", ylab="Concentration (mM)")
+                xlab="sample index", ylab="Concentration (mM)")
             } else {
                 boxplot(quan[,i] ~ grp, 
                         main=paste(reg[i,"metabolite"], 
@@ -93,7 +93,7 @@ saveQuantification <- function(resultObject, DirPath=""){
         if(is.na(groups)){
                 barplot(quan[,i], main=paste(reg[i,"metabolite"], 
                 " ", reg[i,"ppm"], " ppm"), names=grp_names, 
-                xlab="", ylab="Concentration (mM)")
+                xlab="sample index", ylab="Concentration (mM)")
             } else {
                 boxplot(quan[,i] ~ grp, main=paste(reg[i,"metabolite"], 
                 " ", reg[i,"ppm"], " ppm"), names=grp_names, 
