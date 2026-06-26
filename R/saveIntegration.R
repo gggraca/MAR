@@ -44,13 +44,10 @@ saveIntegration <- function(resultObject, DirPath=""){
     # get integrals, groups and sample names from resultObject
         intg <- resultObject$integrals
         groups <- resultObject$groups
-        SpNames <- resultObject$SpNames
         
-        if(is.na(groups)) {
-    	    grp <- seq_len(nrow(M))
-        }
-        if(!is.null(SpNames)){
-             grp_names <- spNames
+        if(length(groups) > 1) {
+            grp <- groups
+            grp_names <- unique(groups)
         }
     
     for(i in seq_len(nrow(reg))){
@@ -69,33 +66,33 @@ saveIntegration <- function(resultObject, DirPath=""){
             par(mfrow=c(1,2))
             matplot(T[,1], T[,2:dim(T)[2]], type="l", 
                 lty=1, xlab="chemical shift (ppm)", ylab="intensity (a.u.)", 
-                col=grp, xlim=rev(range(T[,1])),
+                xlim=rev(range(T[,1])),
             	main=paste(reg[i,"metabolite"], reg[i,"ppm"], " ppm"),
                 sub="with baseline correction")
-            if(is.na(groups)){
+            if(length(groups) == 1){
                 plot(intg[,i], main=paste(reg[i,"metabolite"], 
                 reg[i,"ppm"], " ppm"), 
                 xlab="sample index", ylab="Peak area (a.u.)")
             } else {
                 boxplot(intg[,i] ~ grp, main=paste(reg[i,1], 
                 reg[i,2], " ppm"), names=grp_names, 
-                xlab="", ylab="Peak area (a.u.)", col=unique(grp))
+                xlab="", ylab="Peak area (a.u.)")
             }
         } else {
             par(mfrow=c(1,2))
             matplot(M[a:b,1], M[a:b,2:dim(M)[2]], type = "l", lty = 1, 
-                xlab="chemical shift (ppm)", col=grp,
+                xlab="chemical shift (ppm)",
                 ylab="intensity (a.u.)", xlim=rev(range(M[a:b,1])),
             	main=paste(reg[i,"metabolite"], reg[i,"ppm"], " ppm"),
                 sub="without baseline correction")
-        if(is.na(groups)){
+        if(length(groups) == 1){
                 plot(intg[,i], main=paste(reg[i,"metabolite"], 
                 reg[i,"ppm"], " ppm"), 
                 xlab="sample index", ylab="Peak area (a.u.)")
             } else {
                 boxplot(intg[,i] ~ grp, main=paste(reg[i,"metabolite"], 
                 " ", reg[i,"ppm"], " ppm"), names=grp_names, 
-                xlab="", ylab="Peak area (a.u.)", col=unique(grp))
+                xlab="", ylab="Peak area (a.u.)")
             }
         }
         dev.off()

@@ -44,6 +44,14 @@ saveQuantification <- function(resultObject, DirPath=""){
     # get integrated regions from resultObject
     reg <- resultObject$integrationRegions
     
+    # get groups and sample names from resultObject
+    groups <- resultObject$groups
+    
+    if(length(groups) > 1) {
+            grp <- groups
+            grp_names <- unique(groups)
+        }
+    
     for(i in seq_len(nrow(reg))){
         ints <- which(M[,1] > reg[i,"ppm.end"] & M[,1] < reg[i,"ppm.start"])
         a <- ints[1]
@@ -51,17 +59,6 @@ saveQuantification <- function(resultObject, DirPath=""){
         if(isTRUE(resultObject$baseline)){
             T <- bas(M, reg[i,"ppm.start"], reg[i,"ppm.end"])
         }
-        
-        # get groups and sample names from resultObject
-        groups <- resultObject$groups
-        SpNames <- resultObject$SpNames
-        
-        if(is.na(groups)) {
-    	    grp <- seq_len(nrow(M))
-        }
-        if(!is.null(SpNames)){
-            grp_names <- SpNames
-        } else
     
         # Save plots of integrated regions and quantification results
         jpegPath <- file.path(DirPath, 
@@ -69,13 +66,13 @@ saveQuantification <- function(resultObject, DirPath=""){
                                      "_ppm", ".jpg", sep=""))
         jpeg(jpegPath, res=300, quality=100, height=8, width=18, units="cm")
         if(isTRUE(resultObject$baseline)){
-            par(mfrow=c(1,3))
+            par(mfrow=c(1,2))
             matplot(T[,1], T[,2:dim(T)[2]], type="l", lty=1, 
             	xlab="chemical shift (ppm)",
-            	ylab="intensity (a.u.)", col=grp, xlim=rev(range(T[,1])), 
+            	ylab="intensity (a.u.)", xlim=rev(range(T[,1])), 
             	main=paste(reg[i,"metabolite"], reg[i,"ppm"], " ppm"), 
             	sub="with baseline correction")
-            if(is.na(groups)){
+            if(length(groups) == 1){
                 plot(quan[,i], 
                     main=paste(reg[i,"metabolite"], reg[i,"ppm"], " ppm"), 
                     xlab="sample index", ylab="Concentration (mM)")
@@ -83,23 +80,23 @@ saveQuantification <- function(resultObject, DirPath=""){
                 boxplot(quan[,i] ~ grp, 
                         main=paste(reg[i,"metabolite"], 
                         reg[i,"ppm"], " ppm"), names=grp_names, 
-                xlab="", ylab="Concentration (mM)", col=unique(grp))
+                xlab="", ylab="Concentration (mM)")
             }
         } else {
             par(mfrow=c(1,2))
             matplot(M[a:b,1], M[a:b,2:dim(M)[2]], type = "l", lty = 1, 
-                xlab="chemical shift (ppm)", col=grp,
+                xlab="chemical shift (ppm)",
                 ylab="intensity (a.u.)", xlim=rev(range(M[a:b,1])),
             	main=paste(reg[i,"metabolite"], reg[i,"ppm"], " ppm"),
                 sub="without baseline correction")
-        if(is.na(groups)){
+        if(length(groups) == 1){
                 plot(quan[,i], 
                     main=paste(reg[i,"metabolite"], reg[i,"ppm"], " ppm"), 
                     xlab="sample index", ylab="Concentration (mM)")
             } else {
                 boxplot(quan[,i] ~ grp, main=paste(reg[i,"metabolite"], 
                 " ", reg[i,"ppm"], " ppm"), names=grp_names, 
-                xlab="", ylab="Concentration (mM)", col=unique(grp))
+                xlab="", ylab="Concentration (mM)")
             }
         }
         dev.off()
