@@ -7,13 +7,9 @@ study MTBLS470 ["A Metabonomic Comparison of Human Serum and Plasma Subtypes Usi
 
 From the dataset, 5 1D 1H-NMR spectra were downloaded and unzipped to a local folder ("/MTBLS470").
 
-Firstly we start by laoding the package:
+Firstly we start by loading the package:
 ```
 library(MAR)
-```
-Next we load the data:
-```
-data(mtbls1)
 ```
 The first step to import the data is to set the correct file paths to the processed data ("/pdata/" folder in the Bruker NMR folder structure).
 We do this by first listing all files under the "./MTBLS470/" folder and then selecting all '1r' file paths, which are then edited to obtain 
