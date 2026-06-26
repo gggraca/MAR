@@ -51,7 +51,7 @@ saveIntegration <- function(resultObject, DirPath=""){
         }
         if(!is.null(SpNames)){
              grp_names <- spNames
-        } else grp_names <- seq_len(nrow(M))
+        } else grp_names <- seq_len(nrow(M)-1) # number of rows -ppm scale
     
     for(i in seq_len(nrow(reg))){
         ints <- which(M[,1] > reg[i,"ppm.end"] & M[,1] < reg[i,"ppm.start"])

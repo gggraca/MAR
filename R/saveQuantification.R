@@ -61,7 +61,7 @@ saveQuantification <- function(resultObject, DirPath=""){
         }
         if(!is.null(SpNames)){
             grp_names <- SpNames
-        } else grp_names <- seq_len(nrow(M))
+        } else grp_names <- seq_len(nrow(M)-1) # number of rows -ppm scale
     
         # Save plots of integrated regions and quantification results
         jpegPath <- file.path(DirPath, 
@@ -70,7 +70,8 @@ saveQuantification <- function(resultObject, DirPath=""){
         jpeg(jpegPath, res=300, quality=100, height=8, width=18, units="cm")
         if(isTRUE(resultObject$baseline)){
             par(mfrow=c(1,3))
-            matplot(T[,1], T[,2:dim(T)[2]], type="l", lty=1, xlab="chemical shift (ppm)", 
+            matplot(T[,1], T[,2:dim(T)[2]], type="l", lty=1, 
+            	xlab="chemical shift (ppm)",
             	ylab="intensity (a.u.)", col=grp, xlim=rev(range(T[,1])), 
             	main=paste(reg[i,"metabolite"], reg[i,"ppm"], " ppm"), 
             	sub="with baseline correction")
