@@ -30,7 +30,7 @@
 
 # save stacked plots of the integration windows and boxplots with the peak area values
 # the code below takes the indexes of the chemical shifts of the integration/baseline regions:
-saveQuantification <- function(resultObject, DirPath=""){
+saveIntegration <- function(resultObject, DirPath=""){
     M <- resultObject$spectra
     # if the matrix is not in the format [variables,samples] it will be transposed
     if(nrow(M) < ncol(M)){ 
