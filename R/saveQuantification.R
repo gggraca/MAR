@@ -65,14 +65,15 @@ saveQuantification <- function(resultObject, DirPath=""){
     
         # Save plots of integrated regions and quantification results
         jpegPath <- file.path(DirPath, 
-        	                paste(reg[i,"metabolite"], "_", reg[i,"ppm.end"], "_",
-                                     reg[i,"ppm.start"], "_ppm", ".jpg", sep=""))
+        	                paste(reg[i,"metabolite"], "_", reg[i,"ppm"],
+                                     "_ppm", ".jpg", sep=""))
         jpeg(jpegPath, res=300, quality=100, height=8, width=18, units="cm")
         if(isTRUE(resultObject$baseline)){
             par(mfrow=c(1,3))
             matplot(T[,1], T[,2:dim(T)[2]], type="l", lty=1, xlab="chemical shift (ppm)", 
-            	ylab="intensity (a.u.)", 
-                col = grp, xlim = rev(range(T[,1])), main = "with baseline correction")
+            	ylab="intensity (a.u.)", col=grp, xlim=rev(range(T[,1])), 
+            	main=paste(reg[i,"metabolite"], reg[i,"ppm"], " ppm"), 
+            	sub="with baseline correction")
             if(is.na(groups)){
                 barplot(quan[,i], 
                         main=paste(reg[i,"metabolite"], 
@@ -81,15 +82,16 @@ saveQuantification <- function(resultObject, DirPath=""){
             } else {
                 boxplot(quan[,i] ~ grp, 
                         main=paste(reg[i,"metabolite"], 
-                        " ", reg[i,"ppm"], " ppm"), names=grp_names, 
+                        reg[i,"ppm"], " ppm"), names=grp_names, 
                 xlab="", ylab="Concentration (mM)", col=unique(grp))
             }
         } else {
             par(mfrow=c(1,2))
             matplot(M[a:b,1], M[a:b,2:dim(M)[2]], type = "l", lty = 1, 
-                xlab = "chemical shift (ppm)", col = grp,
-                ylab = "intensity (a.u.)", xlim = rev(range(M[a:b,1])), 
-                main = "without baseline correction")
+                xlab="chemical shift (ppm)", col=grp,
+                ylab="intensity (a.u.)", xlim=rev(range(M[a:b,1])),
+            	main=paste(reg[i,"metabolite"], reg[i,"ppm"], " ppm"),
+                sub="without baseline correction")
         if(is.na(groups)){
                 barplot(quan[,i], main=paste(reg[i,"metabolite"], 
                 " ", reg[i,"ppm"], " ppm"), names=grp_names, 
