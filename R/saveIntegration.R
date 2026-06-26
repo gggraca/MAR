@@ -49,7 +49,7 @@ saveIntegration <- function(resultObject, DirPath=""){
              T <- bas(M, reg[i,"ppm.start"], reg[i,"ppm.end"])
         }
         # get integrals, groups and sample names from resultObject
-        intg <- resultObject$intg
+        intg <- resultObject$integrals
         groups <- resultObject$groups
         SpNames <- resultObject$SpNames
         
@@ -73,11 +73,11 @@ saveIntegration <- function(resultObject, DirPath=""){
                 main="with baseline correction")
             if(is.na(groups)){
                 barplot(intg[,i], main=paste(reg[i,"metabolite"], 
-                " ", reg[i,"ppm"], " ppm"), names=grp_names, 
-                xlab="", ylab="Peak area (a.u.)")
+                reg[i,"ppm"], " ppm"), names=grp_names, 
+                xlab="sample index", ylab="Peak area (a.u.)")
             } else {
                 boxplot(intg[,i] ~ grp, main=paste(reg[i,1], 
-                " ", reg[i,2], " ppm"), names=grp_names, 
+                reg[i,2], " ppm"), names=grp_names, 
                 xlab="", ylab="Peak area (a.u.)", col=unique(grp))
             }
         } else {
@@ -88,8 +88,8 @@ saveIntegration <- function(resultObject, DirPath=""){
                 main="without baseline correction")
         if(is.na(groups)){
                 barplot(intg[,i], main=paste(reg[i,"metabolite"], 
-                " ", reg[i,"ppm"], " ppm"), names=grp_names, 
-                xlab="", ylab="Peak area (a.u.)")
+                reg[i,"ppm"], " ppm"), names=grp_names, 
+                xlab="sample index", ylab="Peak area (a.u.)")
             } else {
                 boxplot(intg[,i] ~ grp, main=paste(reg[i,"metabolite"], 
                 " ", reg[i,"ppm"], " ppm"), names=grp_names, 
