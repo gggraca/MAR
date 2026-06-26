@@ -10,11 +10,16 @@ Main functionalities include data import from [Bruker](https://www.bruker.com/en
 
 <h3> Installation </h3>
 
+To install the 'Metabolomics And nmR toolbox' use the commands below.
 ```
 if (!require("remotes", quietly = TRUE))
     install.packages("remotes")
 
 remotes::install_github("https://github.com/gggraca/MAR/")
+```
+The package also depends on functionality from the 'ptw' R package to perform baseline corrections. 'ptw' should be automatically installed, otherwise it can be installed with:
+```
+install.packages("ptw")
 ```
 
 <h3> Examples </h3>
