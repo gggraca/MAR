@@ -6,7 +6,20 @@ Some examples of application of these methods can be seen in the published paper
 
 <h3> Description </h3>
 
-Main functionalities include data import ([Bruker](https://www.bruker.com/en/products-and-solutions/mr.html) and [nmrML](http://nmrml.org/) formats supported), preprocessing (trimming, normalisation and scaling) and [peak integration](https://github.com/gggraca/MAR/blob/main/integration.md). Scripts for preprocessing, multivariate analysis and visualisation are also included in the repository.
+Main functionalities include data import from [Bruker](https://www.bruker.com/en/products-and-solutions/mr.html) format, preprocessing (trimming, normalisation and scaling), peak integration and quantification. 
+
+<h3> Installation </h3>
+
+```
+if (!require("remotes", quietly = TRUE))
+    install.packages("remotes")
+
+remotes::install_github("https://github.com/gggraca/MAR/")
+```
+
+<h3> Examples </h3>
+
+A tipical example of data integration and quantification can be found in the vignettes folder as [integration_examples](https://github.com/gggraca/MAR/blob/main/vignettes/integration_examples.md). 
 
 
 <h3> References </h3>
