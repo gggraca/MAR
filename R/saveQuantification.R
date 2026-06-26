@@ -73,7 +73,7 @@ saveQuantification <- function(resultObject, DirPath=""){
             matplot(T[,1], T[,2:dim(T)[2]], type="l", lty=1, xlab="chemical shift (ppm)", 
             	ylab="intensity (a.u.)", 
                 col = grp, xlim = rev(range(T[,1])), main = "with baseline correction")
-            if(is.na(grp)){
+            if(is.na(groups)){
                 barplot(quan[,i], 
                         main=paste(reg[i,"metabolite"], 
                         " ", reg[i,"ppm"], " ppm"), names=grp_names, 
@@ -90,7 +90,7 @@ saveQuantification <- function(resultObject, DirPath=""){
                 xlab = "chemical shift (ppm)", col = grp,
                 ylab = "intensity (a.u.)", xlim = rev(range(M[a:b,1])), 
                 main = "without baseline correction")
-        if(is.na(grp)){
+        if(is.na(groups)){
                 barplot(quan[,i], main=paste(reg[i,"metabolite"], 
                 " ", reg[i,"ppm"], " ppm"), names=grp_names, 
                 xlab="", ylab="Concentration (mM)")

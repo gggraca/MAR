@@ -71,7 +71,7 @@ saveIntegration <- function(resultObject, DirPath=""){
                 lty=1, xlab="chemical shift (ppm)", ylab="intensity (a.u.)", 
                 col = grp, xlim = rev(range(T[,1])),
                 main="with baseline correction")
-            if(is.na(grp)){
+            if(is.na(groups)){
                 barplot(intg[,i], main=paste(reg[i,"metabolite"], 
                 " ", reg[i,"ppm"], " ppm"), names=grp_names, 
                 xlab="", ylab="Peak area (a.u.)")
@@ -86,7 +86,7 @@ saveIntegration <- function(resultObject, DirPath=""){
                 xlab="chemical shift (ppm)", col=grp,
                 ylab="intensity (a.u.)", xlim=rev(range(M[a:b,1])), 
                 main="without baseline correction")
-        if(is.na(grp)){
+        if(is.na(groups)){
                 barplot(intg[,i], main=paste(reg[i,"metabolite"], 
                 " ", reg[i,"ppm"], " ppm"), names=grp_names, 
                 xlab="", ylab="Peak area (a.u.)")
