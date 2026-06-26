@@ -30,8 +30,15 @@ of each sample or groups of samples (if a group label is provided).
 Plots are saved as \code{.jpeg} and the integrals table as \code{.csv}.
 }
 \examples{
+data("mtbls1")
+reg <- data.frame(metabolite = c("Creatine", "Creatinine", "Glucose"), 
+                  nprotons = c(3, 2, 1), ppm=c(3.04, 4.06, 5.23), 
+                  ppm.start=c(3.046, 4.068, 5.26), 
+                   ppm.end=c(3.040, 4.054, 5.23))
+integrationResult <- multiIntegration(urine, reg, baseline=TRUE, SpNames=NULL, 
+                                    groups=NA, projectName="MTBLS1")
 userDir <- tempdir()
-saveIntegration(result, DirPath=userDir)
+saveIntegration(integrationResult, DirPath=userDir)
 }
 \author{
 Goncalo Graca, Imperial College London
