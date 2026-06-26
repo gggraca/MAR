@@ -61,7 +61,7 @@ saveQuantification <- function(resultObject, DirPath=""){
         }
         if(!is.null(SpNames)){
             grp_names <- SpNames
-        } else grp_names <- seq_len(nrow(M)-1) # number of rows -ppm scale
+        } else
     
         # Save plots of integrated regions and quantification results
         jpegPath <- file.path(DirPath, 
@@ -76,10 +76,9 @@ saveQuantification <- function(resultObject, DirPath=""){
             	main=paste(reg[i,"metabolite"], reg[i,"ppm"], " ppm"), 
             	sub="with baseline correction")
             if(is.na(groups)){
-                barplot(quan[,i], 
-                        main=paste(reg[i,"metabolite"], 
-                        " ", reg[i,"ppm"], " ppm"), names=grp_names, 
-                xlab="sample index", ylab="Concentration (mM)")
+                plot(quan[,i], 
+                    main=paste(reg[i,"metabolite"], reg[i,"ppm"], " ppm"), 
+                    xlab="sample index", ylab="Concentration (mM)")
             } else {
                 boxplot(quan[,i] ~ grp, 
                         main=paste(reg[i,"metabolite"], 
@@ -94,16 +93,16 @@ saveQuantification <- function(resultObject, DirPath=""){
             	main=paste(reg[i,"metabolite"], reg[i,"ppm"], " ppm"),
                 sub="without baseline correction")
         if(is.na(groups)){
-                barplot(quan[,i], main=paste(reg[i,"metabolite"], 
-                " ", reg[i,"ppm"], " ppm"), names=grp_names, 
-                xlab="sample index", ylab="Concentration (mM)")
+                plot(quan[,i], 
+                    main=paste(reg[i,"metabolite"], reg[i,"ppm"], " ppm"), 
+                    xlab="sample index", ylab="Concentration (mM)")
             } else {
                 boxplot(quan[,i] ~ grp, main=paste(reg[i,"metabolite"], 
                 " ", reg[i,"ppm"], " ppm"), names=grp_names, 
                 xlab="", ylab="Concentration (mM)", col=unique(grp))
             }
         }
-    dev.off()
+        dev.off()
     }
     
     # Save a table with integrals per metabolite (rows) per sample (column)
