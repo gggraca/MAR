@@ -41,14 +41,7 @@ saveIntegration <- function(resultObject, DirPath=""){
     # get integrated regions from resultObject
     reg <- resultObject$integrationRegions
     
-    for(i in seq_len(nrow(reg))){
-        ints <- which(M[,1] > reg[i,"ppm.end"] & M[,1] < reg[i,"ppm.start"])
-        a <- ints[1]
-        b <- ints[length(ints)]
-        if(isTRUE(resultObject$baseline)){
-             T <- bas(M, reg[i,"ppm.start"], reg[i,"ppm.end"])
-        }
-        # get integrals, groups and sample names from resultObject
+    # get integrals, groups and sample names from resultObject
         intg <- resultObject$integrals
         groups <- resultObject$groups
         SpNames <- resultObject$SpNames
@@ -60,17 +53,25 @@ saveIntegration <- function(resultObject, DirPath=""){
              grp_names <- spNames
         } else grp_names <- seq_len(nrow(M))
     
+    for(i in seq_len(nrow(reg))){
+        ints <- which(M[,1] > reg[i,"ppm.end"] & M[,1] < reg[i,"ppm.start"])
+        a <- ints[1]
+        b <- ints[length(ints)]
+        if(isTRUE(resultObject$baseline)){
+             T <- bas(M, reg[i,"ppm.start"], reg[i,"ppm.end"])
+        }
         # Save plots of integrated regions and integration results
         jpegPath <- file.path(DirPath, 
-        	                paste(reg[i,"metabolite"], "_", reg[i,"ppm.end"], "_",
-                                     reg[i,"ppm.start"], "_ppm", ".jpg", sep=""))
+        	                paste(reg[i,"metabolite"], "_", reg[i,"ppm"],
+                                     "_ppm", ".jpg", sep=""))
         jpeg(jpegPath, res=300, quality=100, height=8, width=18, units="cm")
         if(isTRUE(resultObject$baseline)){
-            par(mfrow=c(1,3))
+            par(mfrow=c(1,2))
             matplot(T[,1], T[,2:dim(T)[2]], type="l", 
                 lty=1, xlab="chemical shift (ppm)", ylab="intensity (a.u.)", 
-                col = grp, xlim = rev(range(T[,1])),
-                main="with baseline correction")
+                col=grp, xlim=rev(range(T[,1])),
+            	main=paste(reg[i,"metabolite"], reg[i,"ppm"], " ppm"),
+                sub="with baseline correction")
             if(is.na(groups)){
                 barplot(intg[,i], main=paste(reg[i,"metabolite"], 
                 reg[i,"ppm"], " ppm"), names=grp_names, 
@@ -84,8 +85,9 @@ saveIntegration <- function(resultObject, DirPath=""){
             par(mfrow=c(1,2))
             matplot(M[a:b,1], M[a:b,2:dim(M)[2]], type = "l", lty = 1, 
                 xlab="chemical shift (ppm)", col=grp,
-                ylab="intensity (a.u.)", xlim=rev(range(M[a:b,1])), 
-                main="without baseline correction")
+                ylab="intensity (a.u.)", xlim=rev(range(M[a:b,1])),
+            	main=paste(reg[i,"metabolite"], reg[i,"ppm"], " ppm"),
+                sub="without baseline correction")
         if(is.na(groups)){
                 barplot(intg[,i], main=paste(reg[i,"metabolite"], 
                 reg[i,"ppm"], " ppm"), names=grp_names, 
