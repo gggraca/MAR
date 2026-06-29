@@ -46,7 +46,7 @@ Optionally the groups of samples (if any) can also be defined and used as metada
 In the example, we will define the sample groups, in this case "diabetes" and healthy controls:
 
 ```
-groups <- c(rep("Diabetes", 48), rep("Control", 84))
+grp <- c(rep("Diabetes", 48), rep("Control", 84))
 ```
 
 The integration function can now be run using the following command:
@@ -69,7 +69,7 @@ Using the data from the example above, it can consider glucose as the metabolite
 use it has reference in the quantification in the following way:
 
 ```
-quanResult <- multiQuant(urine, reg, reference="Glucose", refConc=1, 
+quanResult <- multiQuant(urine, reg, reference="Glucose", refConc=1, removeRef=TRUE,
                         SpNames=NULL, baseline=TRUE, groups=grp, 
                         projectName="MTBLS1")
 ```
