@@ -13,8 +13,9 @@
 #' regions, the number of protons and chemical shift of each metabolite signal,
 #' \code{integrationRegions}, the integration and quantification results 
 #' (\code{integrals} and \code{quantification}) and other the metadata such as 
-#' \code{baseline}, reference name(\code{reference}) and concentration 
-#' (\code{refConc}), the groups labels \code{groups}, sample names 
+#' \code{baseline}, reference name(\code{reference}), reference concentration 
+#' (\code{refConc}), omit reference from results (\code{removeRef}),
+#' the groups labels \code{groups}, sample names 
 #' \code{spNames}, and project name \code{projectName}.
 #' @param DirPath Path to the user-defined results folder.
 #' 
@@ -51,6 +52,7 @@ saveQuantification <- function(resultObject, DirPath=""){
     }
     # get integrated regions from resultObject
     reg <- resultObject$integrationRegions
+    refIdx <- grep(reference, reg$metabolite)
     
     # get groups and sample names from resultObject
     groups <- resultObject$groups
@@ -60,7 +62,10 @@ saveQuantification <- function(resultObject, DirPath=""){
             grp_names <- unique(groups)
         }
     
-    for(i in seq_len(nrow(reg))){
+    metIdx <- seq_len(nrow(reg))
+    if(isTRUE(resultObject$removeRef)) metIdx <- metIdx[-refIdx]
+    
+    for(i in metIdx){
         ints <- which(M[,1] > reg[i,"ppm.end"] & M[,1] < reg[i,"ppm.start"])
         a <- ints[1]
         b <- ints[length(ints)]
@@ -71,10 +76,15 @@ saveQuantification <- function(resultObject, DirPath=""){
         # Save plots of integrated regions and quantification results
         jpegPath <- file.path(DirPath, 
         	                paste(reg[i,"metabolite"], "_", reg[i,"ppm"],
-                                     "_ppm", ".jpg", sep=""))
+                                     "_ppm", "_Quant", ".jpg", sep=""))
         jpeg(jpegPath, res=300, quality=100, height=8, width=18, units="cm")
         if(isTRUE(resultObject$baseline)){
-            par(mfrow=c(1,2))
+            par(mfrow=c(1,3))
+        	matplot(M[a:b,1], M[a:b,2:dim(M)[2]], type = "l", lty = 1, 
+                xlab="chemical shift (ppm)",
+                ylab="intensity (a.u.)", xlim=rev(range(M[a:b,1])),
+            	main=paste(reg[i,"metabolite"], reg[i,"ppm"], " ppm"),
+                sub="without baseline correction")
             matplot(T[,1], T[,2:dim(T)[2]], type="l", lty=1, 
             	xlab="chemical shift (ppm)",
             	ylab="intensity (a.u.)", xlim=rev(range(T[,1])), 
@@ -111,8 +121,11 @@ saveQuantification <- function(resultObject, DirPath=""){
     }
     
     # Save a table with integrals per metabolite (rows) per sample (column)
+    # remove the reference result if removeRef == TRUE
+    if(isTRUE(resultObject$removeRef)) quan <- quan[,-refIdx]
+    
     csvPath <- file.path(DirPath, 
                 paste(resultObject$projectName, 
                 "_", "quantification_result", ".csv", sep=""))
-    write.csv(resultObject$quantification, csvPath, quote=FALSE)
+    write.csv(quan, csvPath, quote=FALSE)
 }
