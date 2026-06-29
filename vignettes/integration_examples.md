@@ -63,8 +63,9 @@ saveIntegration(results, DirPath="./project")
 
 # Metabolite quantification
 
-Similarly, it is also possible to perform metabolite quantification if a quantification reference compound with known concentration is present
-in the spectra. Using the data from the example above, it can consider glucose as the metabolite with known concentration (e.g. 1 mM) and
+It is also possible to perform metabolite quantification if a quantification reference compound with known concentration is present
+in the spectra (note that absolute quantification is only reliable if full nuclei relaxation is achieved). 
+Using the data from the example above, it can consider glucose as the metabolite with known concentration (e.g. 1 mM) and
 use it has reference in the quantification in the following way:
 
 ```
