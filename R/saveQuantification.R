@@ -52,6 +52,7 @@ saveQuantification <- function(resultObject, DirPath=""){
     }
     # get integrated regions from resultObject
     reg <- resultObject$integrationRegions
+    reference <- resultObject$reference
     refIdx <- grep(reference, reg$metabolite)
     
     # get groups and sample names from resultObject
