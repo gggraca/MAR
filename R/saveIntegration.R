@@ -70,7 +70,12 @@ saveIntegration <- function(resultObject, DirPath=""){
                                      "_ppm", ".jpg", sep=""))
         jpeg(jpegPath, res=300, quality=100, height=8, width=18, units="cm")
         if(isTRUE(resultObject$baseline)){
-            par(mfrow=c(1,2))
+            par(mfrow=c(1,3))
+        	matplot(M[a:b,1], M[a:b,2:dim(M)[2]], type = "l", lty = 1, 
+                xlab="chemical shift (ppm)",
+                ylab="intensity (a.u.)", xlim=rev(range(M[a:b,1])),
+            	main=paste(reg[i,"metabolite"], reg[i,"ppm"], " ppm"),
+                sub="without baseline correction")
             matplot(T[,1], T[,2:dim(T)[2]], type="l", 
                 lty=1, xlab="chemical shift (ppm)", ylab="intensity (a.u.)", 
                 xlim=rev(range(T[,1])),
