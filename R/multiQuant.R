@@ -19,6 +19,9 @@
 #' @param reference Exact name of the reference metabolite or compound, as
 #' named in the \code{reg} data frame.
 #' @param refConc The concentration of the reference compound/metabolite in mM
+#' @param removeRef A logical value to indicate if the reference is to be 
+#' included (\code{removeRef==FALSE}) or excluded (\code{removeRef==TRUE}) 
+#' from the quantification results. The default value is (\code{FALSE}).
 #' @param SpNames A string containing the sample names. The default 
 #' is \code{NULL}.
 #' @param baseline A logical value to specify if baseline should be performed.
@@ -47,8 +50,8 @@
 #'                          SpNames=NULL, baseline=TRUE, groups=NA, 
 #'                          projectName="MTBLS1")
 #' @export
-multiQuant <- function(M, reg, reference="ERETIC", refConc=10, SpNames=NULL, 
-                       baseline=TRUE, groups=NA, projectName="") {
+multiQuant <- function(M, reg, reference="ERETIC", refConc=10, removeRef=FALSE, 
+                       SpNames=NULL, baseline=TRUE, groups=NA, projectName="") {
     #if the matrix is not in the format [variables,samples] it will be transposed
     if(nrow(M) < ncol(M)){
         M <- t(M)
