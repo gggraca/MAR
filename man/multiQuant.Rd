@@ -9,6 +9,7 @@ multiQuant(
   reg,
   reference = "ERETIC",
   refConc = 10,
+  removeRef = FALSE,
   SpNames = NULL,
   baseline = TRUE,
   groups = NA,
@@ -29,6 +30,10 @@ end of the signal in ppm (\code{ppm.start} and \code{ppm.end}, respectively)}
 named in the \code{reg} data frame.}
 
 \item{refConc}{The concentration of the reference compound/metabolite in mM}
+
+\item{removeRef}{A logical value to indicate if the reference is to be
+included (\code{removeRef==FALSE}) or excluded (\code{removeRef==TRUE})
+from the quantification results. The default value is (\code{FALSE}).}
 
 \item{SpNames}{A string containing the sample names. The default
 is \code{NULL}.}

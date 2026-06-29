@@ -12,8 +12,9 @@ the spectra matrix \code{spectra}, data frame containing the integration
 regions, the number of protons and chemical shift of each metabolite signal,
 \code{integrationRegions}, the integration and quantification results
 (\code{integrals} and \code{quantification}) and other the metadata such as
-\code{baseline}, reference name(\code{reference}) and concentration
-(\code{refConc}), the groups labels \code{groups}, sample names
+\code{baseline}, reference name(\code{reference}), reference concentration
+(\code{refConc}), omit reference from results (\code{removeRef}),
+the groups labels \code{groups}, sample names
 \code{spNames}, and project name \code{projectName}.}
 
 \item{DirPath}{Path to the user-defined results folder.}
