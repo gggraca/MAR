@@ -7,7 +7,8 @@ Authors@R: c(person(given = "Goncalo", family = "Graca", role = c("aut", "cre"),
 Description: NMR metabolomics toolbox with several functions to load, plot, integrate and quantify metabolites from 1H-NMR spectra.
 Depends:
     R (>= 4.5.0),
-    ptw (>= 1.9)
+    ptw (>= 1.9),
+    ggplot2 (>=4.0.3)
 License: GPL-3
 BugReports: https://github.com/gggraca/MAR/issues
 URL: https://github.com/gggraca/MAR
