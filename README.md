@@ -17,9 +17,10 @@ if (!require("remotes", quietly = TRUE))
 
 remotes::install_github("https://github.com/gggraca/MAR/")
 ```
-The package also depends on functionality from the 'ptw' R package to perform baseline corrections. 'ptw' should be automatically installed, otherwise it can be installed with:
+The package also depends on functionality from the 'ptw' R package to perform baseline corrections and some plotting functionality from the 'ggplot2' package. Both packages should be automatically installed, otherwise they can be installed with:
 ```
 install.packages("ptw")
+install.package("ggplot2")
 ```
 
 <h3> Examples </h3>
