@@ -16,9 +16,11 @@ prior to plotting.}
 
 \item{f2}{Chemical shift of the rightmost ppm value to plot.}
 
-\item{ppm}{Logical value. If \code{TRUE} the ppm values will be
-as the plot x scale (default option). The variable indexes will used if
-set to \code{FALSE}.}
+\item{ppm}{If set to \code{TRUE} (default option) the ppm values will be
+added to the plot x scale. The variable indexes will used if
+set to \code{FALSE}. The chemical shift values can also be added as a
+numeric vector of the same size as the number of rows or columns of
+\code{X}.}
 
 \item{title}{Title of the plot (optional).}
 }

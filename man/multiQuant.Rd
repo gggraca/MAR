@@ -9,7 +9,9 @@ multiQuant(
   reg,
   reference = "ERETIC",
   refConc = 10,
+  concUnits = "mM",
   removeRef = FALSE,
+  volCorrFactor = NULL,
   SpNames = NULL,
   baseline = TRUE,
   groups = NA,
@@ -29,11 +31,23 @@ end of the signal in ppm (\code{ppm.start} and \code{ppm.end}, respectively)}
 \item{reference}{Exact name of the reference metabolite or compound, as
 named in the \code{reg} data frame.}
 
-\item{refConc}{The concentration of the reference compound/metabolite in mM}
+\item{refConc}{The concentration of the reference compound/metabolite
+in mmol.}
+
+\item{concUnits}{Concentration units of the reference compound/metabolite.
+The default is \code{concUnits="mM"} (mmol/L). However, results can also be
+obtained in mmol/L / mol of Creatinine (by setting
+\code{concUnits="Creatinine"}) if creatinine is present in the analysed
+samples. This is particularly useful when analyzing urine samples.}
 
 \item{removeRef}{A logical value to indicate if the reference is to be
 included (\code{removeRef==FALSE}) or excluded (\code{removeRef==TRUE})
 from the quantification results. The default value is (\code{FALSE}).}
+
+\item{volCorrFactor}{A concentration correction factor to account for
+sample dilution. For instance, serum or plasma are usually diluted 1:1
+with buffer, therefore the set \code{volCorrFactor=2}. No correction is
+applied if set to (\code{NULL}).}
 
 \item{SpNames}{A string containing the sample names. The default
 is \code{NULL}.}
@@ -71,8 +85,8 @@ reg <- data.frame(metabolite = c("Creatine", "Creatinine", "Glucose"),
                   ppm.start=c(3.046, 4.068, 5.26), 
                    ppm.end=c(3.040, 4.054, 5.23))
 quanResult <- multiQuant(urine, reg, reference="Glucose", refConc=1, 
-                         SpNames=NULL, baseline=TRUE, groups=NA, 
-                         projectName="MTBLS1")
+                         concUnits="mM", removeRef=FALSE, SpNames=NULL, 
+                         baseline=TRUE, groups=NA, projectName="MTBLS1")
 }
 \author{
 Goncalo Graca, Imperial College London
