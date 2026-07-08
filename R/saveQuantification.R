@@ -125,8 +125,25 @@ saveQuantification <- function(resultObject, DirPath=""){
     # remove the reference result if removeRef == TRUE
     if(isTRUE(resultObject$removeRef)) quan <- quan[,-refIdx]
     
+    if(resultObject$concUnits == "Creatinine"){
+    	creatIdx <- grep("Creatinine", colnames(quan))
+        # converts to mol from mmol/L assuming 600 uL total volume:
+    	# needs to be modified if volCorrFactor is applied
+    	if(!is.null(resultObject$volCorrFactor)){
+            volCorrFactor <- resultObject$volCorrFactor
+            tmp <- quan[,creatIdx]/volCorrFactor
+            tmp <- (tmp*6e-6) / 1000
+    	} else tmp <- (quan[,creatIdx]*6e-6) / 1000
+        creatUnits <- quan / tmp
+        creatUnits <- creatUnits[,-creatIdx]
+        csvPathCreat <- file.path(DirPath, 
+                paste(resultObject$projectName, 
+                "_", "quantification_per_mol_Creat", ".csv", sep=""))
+        write.csv(creatUnits, csvPathCreat, quote=FALSE)
+    }
+    # save results
     csvPath <- file.path(DirPath, 
                 paste(resultObject$projectName, 
-                "_", "quantification_result", ".csv", sep=""))
+                "_", "quantification", ".csv", sep=""))
     write.csv(quan, csvPath, quote=FALSE)
 }
